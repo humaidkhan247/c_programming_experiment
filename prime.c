@@ -1,13 +1,29 @@
-
 #include <stdio.h>
 
+int isPrime(int num) {
+    int j;
+
+    if (num <= 1) {
+        return 0;
+    }
+
+    j = 2;
+    while (j <= num / 2) {
+        if (num % j == 0) {
+            return 0;
+        }
+        j++;
+    }
+
+    return 1;
+}
+
 int main() {
-    int start, end, i, j, isPrime;
+    int start, end, i;
 
     printf("===========================\n");
     printf("Enter lower limit : ");
     scanf("%d", &start);
-
     printf("Enter upper limit : ");
     scanf("%d", &end);
 
@@ -16,21 +32,8 @@ int main() {
     i = start;
 
     while (i <= end) {
-        if (i > 1) {
-            isPrime = 1;
-            j = 2;
-
-            while (j <= i / 2) {
-                if (i % j == 0) {
-                    isPrime = 0;
-                    break;
-                }
-                j++;
-            }
-
-            if (isPrime == 1) {
-                printf("%d ", i);
-            }
+        if (isPrime(i) == 1) {
+            printf("%d ", i);
         }
 
         i++;

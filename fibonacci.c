@@ -1,12 +1,22 @@
-// write a program to find fibbonacci series using repeative and itterutive method
+// write a program to find fibbonacci series using repeative and itterative method
 #include <stdio.h>
 
+unsigned long long fibRecursive(int n) {
+    if (n == 0) {
+        return 0;
+    }
+    if (n == 1) {
+        return 1;
+    }
+    return fibRecursive(n - 1) + fibRecursive(n - 2);
+}
+
 int main() {
-    int N;
-    // Use unsigned long long to prevent early integer overflow
+    int N, i;
     unsigned long long t1 = 0, t2 = 1, nextTerm;
     int count = 1;
 
+    printf("==================================\n");
     printf("Enter the number of terms N: ");
     if (scanf("%d", &N) != 1) {
         printf("Invalid input.\n");
@@ -16,7 +26,7 @@ int main() {
     if (N <= 0) {
         printf("Please enter a positive integer greater than 0.\n");
     } else {
-        printf("Fibonacci Series up to %d terms:\n", N);
+        printf("Fibonacci Series up to %d terms (iterative):\n", N);
 
         do {
             printf("%llu ", t1); 
@@ -26,6 +36,15 @@ int main() {
             count++;
         } while (count <= N);
 
+        printf("\n");
+
+        printf("Fibonacci Series up to %d terms (recursive):\n", N);
+
+        for (i = 0; i < N; i++) {
+            printf("%llu ", fibRecursive(i));
+        }
+
+        printf("\n==================================\n");
         printf("\n");
     }
 
